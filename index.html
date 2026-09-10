@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Groww Portal | Verified Client Portfolio Feed</title>
   <!-- Authentic Groww Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><circle cx='24' cy='24' r='24' fill='%23ffffff'/><path fill='%2300D09C' d='M23.6 12a12 12 0 0 0-8.5 20.5l4.3-4.3a6 6 0 0 1 4.2-10.2c2.2 0 4.1 1.2 5.1 3l4.5-4.5A11.9 11.9 0 0 0 23.6 12z'/><path fill='%235367F5' d='M24.4 36a12 12 0 0 0 8.5-20.5l-4.3 4.3a6 6 0 0 1-4.2 10.2c-2.2 0-4.1-1.2-5.1-3l-4.5 4.5A11.9 11.9 0 0 0 24.4 36z'/></svg>" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%234863f7'/><path d='M2 50 A48 48 0 0 0 98 50 L70 54 L52 68 L32 58 Z' fill='%2300d09c'/><path d='M2 50 A48 48 0 0 0 88 74 L70 54 L52 68 L32 58 Z' fill='%2302b88b'/><path d='M8 64 A48 48 0 0 0 76 88 L70 66 L52 76 L32 68 Z' fill='%23019e77'/></svg>" />
   <style>
     :root {
       --bg-dark: #070a10;
@@ -13,7 +13,7 @@
       --bg-card: #151d2d;
       --bg-hover: #1b253a;
       --groww-teal: #00d09c;
-      --groww-blue: #5367f5;
+      --groww-blue: #4863f7;
       --groww-teal-glow: rgba(0, 208, 156, 0.35);
       --red: #f87171;
       --text-main: #f3f4f6;
@@ -92,32 +92,62 @@
       background: var(--bg-panel);
       border: 1px solid var(--border);
       padding: 16px 24px;
-      border-radius: 10px;
+      border-radius: 12px;
       margin-bottom: 16px;
     }
 
     .groww-brand {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 18px;
     }
 
-    /* Substantially Bigger Official Groww Logo Badge */
+    /* 1.5x Bigger Groww Official Emblem Container */
     .groww-logo-badge {
-      width: 58px;
-      height: 58px;
+      width: 88px;
+      height: 88px;
       background: #ffffff;
-      border-radius: 14px;
+      border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 20px var(--groww-teal-glow), 0 2px 6px rgba(0,0,0,0.5);
+      box-shadow: 0 0 24px var(--groww-teal-glow), 0 4px 10px rgba(0,0,0,0.4);
       flex-shrink: 0;
       transition: transform 0.2s ease;
+      padding: 4px;
     }
 
     .groww-logo-badge:hover {
-      transform: scale(1.05);
+      transform: scale(1.04);
+    }
+
+    .groww-brand-titles {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .groww-brand-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .groww-wordmark {
+      font-size: 32px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+    }
+
+    .portal-tag {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--groww-teal);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding-left: 8px;
+      border-left: 2px solid var(--border);
     }
 
     .badge-live {
@@ -130,8 +160,8 @@
       font-size: 11px;
       text-transform: uppercase;
       font-weight: 700;
-      padding: 6px 12px;
-      border-radius: 4px;
+      padding: 8px 14px;
+      border-radius: 6px;
       letter-spacing: 0.5px;
     }
 
@@ -167,7 +197,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      height: calc(100vh - 180px);
+      height: calc(100vh - 200px);
     }
 
     .sidebar-title {
@@ -222,7 +252,7 @@
       border-radius: 8px;
       padding: 20px;
       overflow-y: auto;
-      height: calc(100vh - 180px);
+      height: calc(100vh - 200px);
     }
 
     .metrics-grid {
@@ -393,24 +423,37 @@
     </div>
   </div>
 
-  <!-- Header with Big Official Groww Symbol -->
+  <!-- Header with 1.5x Bigger Official Groww Logo -->
   <header>
     <div class="groww-brand">
-      <!-- High-Res Large Groww Official Brokerage Icon -->
       <div class="groww-logo-badge" title="Groww Official Verified Feed">
-        <svg viewBox="0 0 64 64" width="44" height="44" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Official Groww Twin Ribbon / Ring Logo -->
-          <g>
-            <path d="M31.47 16.00C22.65 16.00 15.50 23.16 15.50 32.00C15.50 36.27 17.20 40.14 20.14 42.94L25.88 37.20C24.15 35.53 23.10 33.19 23.10 32.00C23.10 27.36 26.86 23.60 31.50 23.60C34.43 23.60 36.97 25.20 38.30 27.60L44.30 21.60C41.23 18.00 36.63 16.00 31.47 16.00Z" fill="#00D09C"/>
-            <path d="M32.53 48.00C41.35 48.00 48.50 40.84 48.50 32.00C48.50 27.73 46.80 23.86 43.86 21.06L38.12 26.80C39.85 28.47 40.90 30.81 40.90 32.00C40.90 36.64 37.14 40.40 32.50 40.40C29.57 40.40 27.03 38.80 25.70 36.40L19.70 42.40C22.77 46.00 27.37 48.00 32.53 48.00Z" fill="#5367F5"/>
+        <!-- Recreated Exact Groww Wavefront Circular Emblem -->
+        <svg viewBox="0 0 100 100" width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <clipPath id="growwCircleClip">
+              <circle cx="50" cy="50" r="48" />
+            </clipPath>
+          </defs>
+          <!-- Outer circular boundary -->
+          <g clip-path="url(#growwCircleClip)">
+            <!-- Top Sky Blue Domain -->
+            <rect width="100" height="100" fill="#4b68f9"/>
+            <!-- Bottom Tier 1 Wave (Deep Teal) -->
+            <path d="M-10 110 L-10 65 L28 45 L54 62 L82 38 L115 54 L115 110 Z" fill="#00b080"/>
+            <!-- Tier 2 Mid Wave (Signature Groww Bright Emerald) -->
+            <path d="M-10 110 L-10 75 L28 55 L54 72 L82 48 L115 64 L115 110 Z" fill="#00d09c"/>
+            <!-- Tier 3 Base Light Emerald Wave -->
+            <path d="M-10 110 L-10 88 L28 68 L54 84 L82 62 L115 76 L115 110 Z" fill="#2fe3b2"/>
           </g>
         </svg>
       </div>
-      <div>
-        <h2 style="font-size: 19px; font-weight: 800; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px;">
-          GROWW <span style="color: var(--groww-teal); font-weight: 300;">|</span> PORTFOLIO DASHBOARD
-        </h2>
-        <span style="font-size: 12px; color: var(--text-muted);">Groww Stock Brokerage Verified Client P&amp;L Ledger</span>
+
+      <div class="groww-brand-titles">
+        <div class="groww-brand-row">
+          <span class="groww-wordmark">Groww</span>
+          <span class="portal-tag">Client Portfolio</span>
+        </div>
+        <span style="font-size: 12px; color: var(--text-muted); margin-top: -2px;">Official Stock Brokerage Verified Client P&amp;L Feed</span>
       </div>
     </div>
 
@@ -523,7 +566,7 @@
   </div>
 
   <script>
-    const STORAGE_KEY = 'groww_cloud_terminal_live_v5';
+    const STORAGE_KEY = 'groww_cloud_terminal_live_v6';
 
     // Seed Data with accurate calculations & Groww references
     const seedDatabase = {
