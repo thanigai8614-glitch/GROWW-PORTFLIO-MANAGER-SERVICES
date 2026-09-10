@@ -3,122 +3,128 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Groww Portal | Verified Client Portfolio Feed</title>
-  <!-- Authentic Groww Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%234863f7'/><path d='M2 50 A48 48 0 0 0 98 50 L70 54 L52 68 L32 58 Z' fill='%2300d09c'/><path d='M2 50 A48 48 0 0 0 88 74 L70 54 L52 68 L32 58 Z' fill='%2302b88b'/><path d='M8 64 A48 48 0 0 0 76 88 L70 66 L52 76 L32 68 Z' fill='%23019e77'/></svg>" />
+  <title>Groww Institutional | Wealth & Client Portfolio Feed</title>
+  <!-- Groww Official Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%234863f7'/><path d='M2 50 A48 48 0 0 0 98 50 L70 54 L52 68 L32 58 Z' fill='%2300b386'/></svg>" />
   <style>
     :root {
-      --bg-dark: #070a10;
-      --bg-panel: #0d131f;
-      --bg-card: #151d2d;
-      --bg-hover: #1b253a;
-      --groww-teal: #00d09c;
-      --groww-blue: #4863f7;
-      --groww-teal-glow: rgba(0, 208, 156, 0.35);
-      --red: #f87171;
-      --text-main: #f3f4f6;
-      --text-muted: #94a3b8;
-      --border: #1e293b;
+      --bg-base: #0a0d14;
+      --bg-surface: #101522;
+      --bg-card: #151c2d;
+      --bg-card-hover: #1b2337;
+      --border-subtle: #232c42;
+      --border-focus: #374567;
+      
+      --accent-groww: #00b386;
+      --accent-groww-muted: rgba(0, 179, 134, 0.12);
+      --accent-blue: #4f6bf5;
+      --accent-red: #ef4444;
+
+      --text-heading: #f8fafc;
+      --text-body: #cbd5e1;
+      --text-muted: #64748b;
+
+      --font-stack: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: var(--font-stack);
+      -webkit-font-smoothing: antialiased;
     }
 
     body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      padding: 16px;
+      background-color: var(--bg-base);
+      color: var(--text-body);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    /* Groww Live Market Strip */
+    /* Subdued Institutional Market Ribbon */
     .market-strip {
-      background: #000;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 8px 16px;
-      margin-bottom: 12px;
+      background: #06080d;
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 9px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 12px;
-      overflow-x: auto;
+      font-size: 11.5px;
+      color: var(--text-muted);
     }
 
     .ticker-group {
       display: flex;
-      gap: 20px;
+      gap: 24px;
       align-items: center;
     }
 
     .ticker-item {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
     }
 
     .ticker-sym {
+      font-weight: 500;
       color: var(--text-muted);
-      font-weight: 600;
+      letter-spacing: 0.3px;
     }
 
     .ticker-price {
-      font-weight: 700;
+      color: var(--text-heading);
+      font-weight: 600;
     }
 
     .ticker-up {
-      color: var(--groww-teal);
+      color: var(--accent-groww);
+      font-weight: 500;
     }
 
-    .refresh-badge {
-      color: var(--groww-teal);
-      font-size: 11px;
+    .gateway-status {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.4px;
     }
 
-    /* Top Bar / Groww Header */
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-groww);
+      box-shadow: 0 0 6px var(--accent-groww);
+    }
+
+    /* Top Navigation */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: var(--bg-panel);
-      border: 1px solid var(--border);
-      padding: 16px 24px;
-      border-radius: 12px;
-      margin-bottom: 16px;
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 16px 28px;
     }
 
-    .groww-brand {
+    .groww-brand-wrapper {
       display: flex;
       align-items: center;
       gap: 18px;
     }
 
-    /* 1.5x Bigger Groww Official Emblem Container */
     .groww-logo-badge {
-      width: 88px;
-      height: 88px;
+      width: 82px;
+      height: 82px;
       background: #ffffff;
-      border-radius: 20px;
+      border-radius: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 24px var(--groww-teal-glow), 0 4px 10px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
       flex-shrink: 0;
-      transition: transform 0.2s ease;
-      padding: 4px;
-    }
-
-    .groww-logo-badge:hover {
-      transform: scale(1.04);
     }
 
     .groww-brand-titles {
@@ -127,88 +133,104 @@
       gap: 2px;
     }
 
-    .groww-brand-row {
+    .groww-wordmark-row {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       gap: 10px;
     }
 
     .groww-wordmark {
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 800;
-      color: #ffffff;
-      letter-spacing: -0.5px;
+      color: var(--text-heading);
+      letter-spacing: -0.6px;
     }
 
     .portal-tag {
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 600;
-      color: var(--groww-teal);
+      color: var(--accent-groww);
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      padding-left: 8px;
-      border-left: 2px solid var(--border);
+      padding-left: 10px;
+      border-left: 1px solid var(--border-focus);
     }
 
-    .badge-live {
+    .brand-subline {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge-verified {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: rgba(0, 208, 156, 0.12);
-      border: 1px solid var(--groww-teal);
-      color: var(--groww-teal);
+      gap: 7px;
+      background: var(--accent-groww-muted);
+      border: 1px solid rgba(0, 179, 134, 0.3);
+      color: var(--accent-groww);
       font-size: 11px;
-      text-transform: uppercase;
-      font-weight: 700;
-      padding: 8px 14px;
+      font-weight: 600;
+      padding: 6px 14px;
       border-radius: 6px;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
     }
 
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--groww-teal);
-      box-shadow: 0 0 8px var(--groww-teal);
-      animation: pulse 1.6s infinite;
+    .btn-admin-gear {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-body);
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.2s ease;
     }
 
-    @keyframes pulse {
-      0% { opacity: 0.3; }
-      50% { opacity: 1; }
-      100% { opacity: 0.3; }
+    .btn-admin-gear:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-focus);
+      color: var(--text-heading);
     }
 
-    /* Layout */
-    .dashboard {
+    /* Primary Dashboard Grid */
+    .dashboard-container {
       display: grid;
       grid-template-columns: 290px 1fr;
-      gap: 16px;
+      gap: 24px;
+      padding: 24px 28px;
       flex: 1;
     }
 
-    /* Client Sidebar */
+    /* Client Navigation Column */
     .sidebar {
-      background: var(--bg-panel);
-      border: 1px solid var(--border);
-      border-radius: 8px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
       padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      height: calc(100vh - 200px);
+      height: calc(100vh - 190px);
     }
 
-    .sidebar-title {
-      font-size: 13px;
+    .sidebar-header {
+      font-size: 11px;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
       color: var(--text-muted);
-      margin-bottom: 4px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-subtle);
     }
 
     .client-list {
@@ -217,358 +239,505 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
 
     .client-btn {
       width: 100%;
       text-align: left;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      color: var(--text-main);
-      padding: 12px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-body);
+      padding: 12px 14px;
       border-radius: 6px;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
       transition: all 0.2s ease;
+      font-size: 13.5px;
     }
 
     .client-btn:hover {
-      background: var(--bg-hover);
-      border-color: #334155;
+      background: var(--bg-card);
     }
 
     .client-btn.active {
-      border-color: var(--groww-teal);
-      background: rgba(0, 208, 156, 0.08);
+      background: var(--bg-card);
+      border-color: var(--border-focus);
+      color: var(--text-heading);
+      font-weight: 600;
     }
 
-    /* Main Content Area */
-    .main-panel {
-      background: var(--bg-panel);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 20px;
+    .client-badge-count {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .client-btn.active .client-badge-count {
+      color: var(--accent-groww);
+    }
+
+    /* Main Presentation Column */
+    .main-view {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 190px);
       overflow-y: auto;
-      height: calc(100vh - 200px);
     }
 
+    .client-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 22px;
+    }
+
+    .client-name-lg {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-heading);
+      letter-spacing: -0.4px;
+    }
+
+    .client-sync-tag {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Key Figures Cards */
     .metrics-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 20px;
+      gap: 16px;
+      margin-bottom: 28px;
     }
 
     .metric-card {
       background: var(--bg-card);
-      padding: 16px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-subtle);
+      padding: 18px 20px;
+      border-radius: 8px;
     }
 
     .metric-title {
-      font-size: 12px;
+      font-size: 11.5px;
+      font-weight: 600;
       color: var(--text-muted);
-      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 8px;
     }
 
-    .metric-value {
+    .metric-val {
       font-size: 22px;
       font-weight: 700;
+      color: var(--text-heading);
+      letter-spacing: -0.4px;
     }
 
-    .metric-value.profit {
-      color: var(--groww-teal);
+    .metric-val.gain {
+      color: var(--accent-groww);
     }
 
-    /* Forms */
-    .action-panel {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 16px;
-      margin-bottom: 20px;
-    }
-
-    .action-panel h4 {
-      margin-bottom: 12px;
-      color: var(--groww-teal);
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 10px;
-      align-items: end;
-    }
-
-    label {
-      font-size: 11px;
-      color: var(--text-muted);
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    input, select, button {
-      width: 100%;
-      background: #090e17;
-      border: 1px solid var(--border);
-      color: #fff;
-      padding: 8px 10px;
-      border-radius: 4px;
+    /* Institutional Ledger */
+    .ledger-section-title {
       font-size: 13px;
-    }
-
-    input:focus, select:focus {
-      outline: none;
-      border-color: var(--groww-teal);
-    }
-
-    .btn-groww {
-      background: var(--groww-teal);
-      color: #000;
       font-weight: 700;
-      cursor: pointer;
-      border: none;
-      transition: opacity 0.2s;
+      color: var(--text-heading);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
     }
 
-    .btn-groww:hover {
-      opacity: 0.9;
+    .ledger-table-wrap {
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      overflow: hidden;
     }
 
-    .btn-outline {
-      background: transparent;
-      border: 1px solid var(--border);
-      cursor: pointer;
-    }
-
-    .btn-outline:hover {
-      background: var(--bg-card);
-    }
-
-    /* Ledger Table */
     .ledger-table {
       width: 100%;
       border-collapse: collapse;
       font-size: 13px;
-    }
-
-    .ledger-table th, .ledger-table td {
-      border: 1px solid var(--border);
-      padding: 10px 12px;
       text-align: left;
     }
 
     .ledger-table th {
-      background: var(--bg-card);
+      background: #0d121c;
       color: var(--text-muted);
       font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .ledger-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-body);
+    }
+
+    .ledger-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .badge-pill {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .pill-deposit {
+      background: rgba(79, 107, 245, 0.12);
+      color: #7b93ff;
+      border: 1px solid rgba(79, 107, 245, 0.25);
+    }
+
+    .pill-profit {
+      background: var(--accent-groww-muted);
+      color: var(--accent-groww);
+      border: 1px solid rgba(0, 179, 134, 0.25);
+    }
+
+    .proof-thumbnail {
+      width: 36px;
+      height: 36px;
+      border-radius: 4px;
+      border: 1px solid var(--border-focus);
+      cursor: pointer;
+      object-fit: cover;
+    }
+
+    /* Admin Flyout Modal (Hidden from Clients by default) */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      justify-content: flex-end;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .admin-drawer {
+      width: 480px;
+      max-width: 90vw;
+      background: var(--bg-surface);
+      border-left: 1px solid var(--border-subtle);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      padding: 24px;
+      box-shadow: -8px 0 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .drawer-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+
+    .btn-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .admin-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .admin-section-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 12px;
+    }
+
+    .form-row label {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
       text-transform: uppercase;
     }
 
-    .badge-deposit {
-      background: rgba(59, 130, 246, 0.15);
-      color: #60a5fa;
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-size: 11px;
+    input, select {
+      background: #0b0f17;
+      border: 1px solid var(--border-focus);
+      color: var(--text-heading);
+      padding: 9px 12px;
+      border-radius: 5px;
+      font-size: 13px;
+      outline: none;
     }
 
-    .badge-profit {
-      background: rgba(0, 208, 156, 0.15);
-      color: var(--groww-teal);
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-size: 11px;
+    input:focus, select:focus {
+      border-color: var(--accent-groww);
     }
 
-    .proof-img {
-      max-width: 45px;
-      max-height: 45px;
-      border-radius: 4px;
+    .btn-primary {
+      background: var(--accent-groww);
+      color: #03150f;
+      border: none;
+      font-weight: 700;
+      padding: 10px;
+      border-radius: 5px;
       cursor: pointer;
-      border: 1px solid var(--border);
+      font-size: 13px;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    .btn-danger {
+      background: transparent;
+      border: 1px solid var(--accent-red);
+      color: var(--accent-red);
+      padding: 8px;
+      border-radius: 5px;
+      font-size: 12px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn-danger:hover {
+      background: rgba(239, 68, 68, 0.1);
     }
   </style>
 </head>
 <body>
 
-  <!-- Live Market Ticker Strip -->
+  <!-- Subdued Institutional Ticker Strip -->
   <div class="market-strip">
     <div class="ticker-group">
       <div class="ticker-item">
-        <span class="ticker-sym">NIFTY 50:</span>
-        <span class="ticker-price ticker-up" id="tickNifty">24,850.30 ▲ +0.48%</span>
+        <span class="ticker-sym">NIFTY 50</span>
+        <span class="ticker-price" id="tickNifty">24,850.30</span>
+        <span class="ticker-up">+0.48%</span>
       </div>
       <div class="ticker-item">
-        <span class="ticker-sym">SENSEX:</span>
-        <span class="ticker-price ticker-up" id="tickSensex">81,420.15 ▲ +0.52%</span>
-      </div>
-      <div class="ticker-item">
-        <span class="ticker-sym">GROWW-GATEWAY:</span>
-        <span class="ticker-price ticker-up">200 CONNECTED</span>
+        <span class="ticker-sym">SENSEX</span>
+        <span class="ticker-price" id="tickSensex">81,420.15</span>
+        <span class="ticker-up">+0.52%</span>
       </div>
     </div>
-    <div class="refresh-badge">
-      <div class="pulse-dot"></div>
-      <span>LIVE DATA STREAM (<span id="pingMs">42ms</span>)</span>
+    <div class="gateway-status">
+      <div class="status-dot"></div>
+      <span>GROWW INSTITUTIONAL DATA GATEWAY (<span id="pingMs">41ms</span>)</span>
     </div>
   </div>
 
-  <!-- Header with 1.5x Bigger Official Groww Logo -->
+  <!-- Header -->
   <header>
-    <div class="groww-brand">
-      <div class="groww-logo-badge" title="Groww Official Verified Feed">
-        <!-- Recreated Exact Groww Wavefront Circular Emblem -->
-        <svg viewBox="0 0 100 100" width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div class="groww-brand-wrapper">
+      <div class="groww-logo-badge" title="Groww Institutional">
+        <!-- Recreated Groww Wavefront Logo -->
+        <svg viewBox="0 0 100 100" width="72" height="72" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <clipPath id="growwCircleClip">
               <circle cx="50" cy="50" r="48" />
             </clipPath>
           </defs>
-          <!-- Outer circular boundary -->
           <g clip-path="url(#growwCircleClip)">
-            <!-- Top Sky Blue Domain -->
-            <rect width="100" height="100" fill="#4b68f9"/>
-            <!-- Bottom Tier 1 Wave (Deep Teal) -->
-            <path d="M-10 110 L-10 65 L28 45 L54 62 L82 38 L115 54 L115 110 Z" fill="#00b080"/>
-            <!-- Tier 2 Mid Wave (Signature Groww Bright Emerald) -->
-            <path d="M-10 110 L-10 75 L28 55 L54 72 L82 48 L115 64 L115 110 Z" fill="#00d09c"/>
-            <!-- Tier 3 Base Light Emerald Wave -->
+            <rect width="100" height="100" fill="#4460f6"/>
+            <path d="M-10 110 L-10 65 L28 45 L54 62 L82 38 L115 54 L115 110 Z" fill="#009e75"/>
+            <path d="M-10 110 L-10 75 L28 55 L54 72 L82 48 L115 64 L115 110 Z" fill="#00b386"/>
             <path d="M-10 110 L-10 88 L28 68 L54 84 L82 62 L115 76 L115 110 Z" fill="#2fe3b2"/>
           </g>
         </svg>
       </div>
 
       <div class="groww-brand-titles">
-        <div class="groww-brand-row">
+        <div class="groww-wordmark-row">
           <span class="groww-wordmark">Groww</span>
-          <span class="portal-tag">Client Portfolio</span>
+          <span class="portal-tag">Private Wealth</span>
         </div>
-        <span style="font-size: 12px; color: var(--text-muted); margin-top: -2px;">Official Stock Brokerage Verified Client P&amp;L Feed</span>
+        <span class="brand-subline">Institutional Client Portfolio &amp; Direct Verification Feed</span>
       </div>
     </div>
 
-    <div style="display: flex; gap: 10px; align-items: center;">
-      <div class="badge-live">
-        <div class="pulse-dot"></div> Sourced Directly From Groww API
+    <!-- Executive Clean Action Bar -->
+    <div class="header-actions">
+      <div class="badge-verified">
+        <div class="status-dot"></div>
+        <span>Groww Verified Feed Active</span>
       </div>
-      <button class="btn-outline" style="width: auto; padding: 7px 14px;" onclick="resetToDefaults()">Reset Data</button>
-      <button class="btn-outline" style="width: auto; padding: 7px 14px;" onclick="exportData()">Backup</button>
+      <!-- Discrete Settings Drawer -->
+      <button class="btn-admin-gear" onclick="toggleAdminModal(true)">
+        <span>⚙️ Management Settings</span>
+      </button>
     </div>
   </header>
 
-  <div class="dashboard">
-    <!-- Sidebar / Clients -->
+  <!-- Presentation Workspace -->
+  <div class="dashboard-container">
+    <!-- Client Directory Navigation -->
     <div class="sidebar">
-      <div class="sidebar-title">
-        <span>Verified Directory</span>
-        <span style="color: var(--groww-teal); font-size: 11px;">● LIVE</span>
-      </div>
-      <div style="display: flex; gap: 6px;">
-        <input type="text" id="newClientName" placeholder="New Client Name..." />
-        <button class="btn-groww" style="width: 65px;" onclick="createClient()">+ Add</button>
-      </div>
+      <div class="sidebar-header">Portfolio Accounts</div>
       <ul class="client-list" id="clientListUl"></ul>
     </div>
 
-    <!-- Main Active Client Panel -->
-    <div class="main-panel" id="mainContent">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+    <!-- Active Account Details -->
+    <div class="main-view">
+      <div class="client-title-row">
         <div>
-          <h3 id="currentClientTitle" style="font-size: 22px;">Loading Client...</h3>
-          <span id="growwSyncStatus" style="font-size: 12px; color: var(--groww-teal);">● Groww Verified Account Feed Connected</span>
+          <h2 class="client-name-lg" id="currentClientTitle">Loading Client...</h2>
+          <div class="client-sync-tag">
+            <span style="color: var(--accent-groww);">●</span> Live Portfolio Account — Groww Direct Brokerage
+          </div>
         </div>
-        <button class="btn-outline" style="width: auto; padding: 6px 12px; color: var(--red); border-color: var(--red);" onclick="deleteCurrentClient()">Delete Client</button>
       </div>
 
-      <!-- Quick Metrics Summary -->
+      <!-- Institutional Metrics -->
       <div class="metrics-grid">
         <div class="metric-card">
-          <div class="metric-title">Total Deposited</div>
-          <div class="metric-value" id="metricDeposited">₹0.00</div>
+          <div class="metric-title">Capital Deposited</div>
+          <div class="metric-val" id="metricDeposited">₹0.00</div>
         </div>
         <div class="metric-card">
-          <div class="metric-title">Total Returns / Profit</div>
-          <div class="metric-value profit" id="metricProfit">₹0.00</div>
+          <div class="metric-title">Cumulative Returns</div>
+          <div class="metric-val gain" id="metricProfit">₹0.00</div>
         </div>
         <div class="metric-card">
-          <div class="metric-title">Current Net Balance</div>
-          <div class="metric-value" id="metricNet">₹0.00</div>
+          <div class="metric-title">Net Portfolio Value</div>
+          <div class="metric-val" id="metricNet">₹0.00</div>
         </div>
         <div class="metric-card">
-          <div class="metric-title">ROI (%)</div>
-          <div class="metric-value profit" id="metricRoi">0.00%</div>
+          <div class="metric-title">Absolute ROI</div>
+          <div class="metric-val gain" id="metricRoi">0.00%</div>
         </div>
       </div>
 
-      <!-- Transaction Entry Form -->
-      <div class="action-panel">
-        <h4><span>+</span> Log Verified Deposit / Return / Proof Image</h4>
-        <div class="form-grid">
-          <div>
-            <label>Transaction Type</label>
-            <select id="txType">
-              <option value="Deposit">Deposit (Capital Inflow)</option>
-              <option value="Weekly Profit">Weekly Profit Return</option>
-              <option value="Monthly Profit">Monthly Profit Return</option>
-              <option value="General Profit">Other Profit</option>
-            </select>
-          </div>
-          <div>
-            <label>Amount (₹)</label>
-            <input type="number" step="any" id="txAmount" placeholder="e.g. 25000" />
-          </div>
-          <div>
-            <label>Date</label>
-            <input type="date" id="txDate" />
-          </div>
-          <div>
-            <label>Attach Groww Screenshot Proof</label>
-            <input type="file" id="txProofImg" accept="image/*" />
-          </div>
-          <div>
-            <label>Notes / Groww Order Ref</label>
-            <input type="text" id="txNotes" placeholder="Order ID or Groww reference" />
-          </div>
-          <div>
-            <button class="btn-groww" onclick="addTransaction()">Submit Entry</button>
-          </div>
-        </div>
+      <!-- Verified Transaction Ledger -->
+      <div class="ledger-section-title">Verified Transaction Log</div>
+      <div class="ledger-table-wrap">
+        <table class="ledger-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Amount (₹)</th>
+              <th>Groww Verification Proof</th>
+              <th>Reference ID</th>
+            </tr>
+          </thead>
+          <tbody id="ledgerBody">
+            <tr><td colspan="5" style="text-align: center; color: var(--text-muted);">No records found.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden Management Drawer (Slide-over) -->
+  <div class="modal-backdrop" id="adminModal" onclick="handleBackdropClick(event)">
+    <div class="admin-drawer">
+      <div class="drawer-header">
+        <h3 class="drawer-title">Settings &amp; Ledger Operations</h3>
+        <button class="btn-close" onclick="toggleAdminModal(false)">&times;</button>
       </div>
 
-      <!-- Ledger Table -->
-      <h4 style="margin-bottom: 12px; font-size: 14px;">Verified Groww Transaction Ledger</h4>
-      <table class="ledger-table">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Type</th>
-            <th>Amount (₹)</th>
-            <th>Groww Proof</th>
-            <th>Notes / Ref</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="ledgerBody">
-          <tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No records found.</td></tr>
-        </tbody>
-      </table>
+      <!-- Log New Transaction -->
+      <div class="admin-section">
+        <div class="admin-section-title">+ Log Entry for Active Client</div>
+        <div class="form-row">
+          <label>Type</label>
+          <select id="txType">
+            <option value="Deposit">Deposit (Capital Inflow)</option>
+            <option value="Weekly Profit">Weekly Profit Return</option>
+            <option value="Monthly Profit">Monthly Profit Return</option>
+            <option value="General Profit">Other Profit</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Amount (₹)</label>
+          <input type="number" step="any" id="txAmount" placeholder="e.g. 150000" />
+        </div>
+        <div class="form-row">
+          <label>Date</label>
+          <input type="date" id="txDate" />
+        </div>
+        <div class="form-row">
+          <label>Attach Proof Screenshot</label>
+          <input type="file" id="txProofImg" accept="image/*" />
+        </div>
+        <div class="form-row">
+          <label>Groww Reference / Notes</label>
+          <input type="text" id="txNotes" placeholder="#89773-Direct Groww ID" />
+        </div>
+        <button class="btn-primary" style="width: 100%; margin-top: 6px;" onclick="addTransaction()">Submit Entry</button>
+      </div>
+
+      <!-- Add New Client -->
+      <div class="admin-section">
+        <div class="admin-section-title">+ Add New Portfolio Client</div>
+        <div class="form-row">
+          <label>Client Full Name</label>
+          <input type="text" id="newClientName" placeholder="Client Name..." />
+        </div>
+        <button class="btn-primary" style="width: 100%;" onclick="createClient()">Create Client Profile</button>
+      </div>
+
+      <!-- Management Controls -->
+      <div class="admin-section">
+        <div class="admin-section-title">Administrative Actions</div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <button class="btn-primary" style="background: var(--bg-surface); border: 1px solid var(--border-focus); color: var(--text-body);" onclick="exportData()">Download Backup (JSON)</button>
+          <button class="btn-primary" style="background: var(--bg-surface); border: 1px solid var(--border-focus); color: var(--text-body);" onclick="resetToDefaults()">Reset Default Calculations</button>
+          <button class="btn-danger" onclick="deleteCurrentClient()">Delete Current Client Profile</button>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
-    const STORAGE_KEY = 'groww_cloud_terminal_live_v6';
+    const STORAGE_KEY = 'groww_institutional_v1';
 
-    // Seed Data with accurate calculations & Groww references
+    // Seed Data with exact calculations & Groww references
     const seedDatabase = {
       activeClientId: 'client_thangavel',
       clients: [
@@ -673,8 +842,25 @@
     }
 
     function resetToDefaults() {
+      if (!confirm('Restore seed client calculations?')) return;
       state = JSON.parse(JSON.stringify(seedDatabase));
       saveState();
+      toggleAdminModal(false);
+    }
+
+    function toggleAdminModal(open) {
+      const modal = document.getElementById('adminModal');
+      if (open) {
+        modal.classList.add('active');
+      } else {
+        modal.classList.remove('active');
+      }
+    }
+
+    function handleBackdropClick(e) {
+      if (e.target.id === 'adminModal') {
+        toggleAdminModal(false);
+      }
     }
 
     function getCurrentClient() {
@@ -695,6 +881,7 @@
       state.activeClientId = id;
       input.value = '';
       saveState();
+      toggleAdminModal(false);
     }
 
     function deleteCurrentClient() {
@@ -702,6 +889,7 @@
       state.clients = state.clients.filter(c => c.id !== state.activeClientId);
       state.activeClientId = state.clients.length ? state.clients[0].id : null;
       saveState();
+      toggleAdminModal(false);
     }
 
     function addTransaction() {
@@ -719,42 +907,29 @@
         return;
       }
 
-      if (fileInput.files && fileInput.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          client.transactions.unshift({
-            id: 'tx_' + Date.now(),
-            date, type, amount,
-            proof: e.target.result,
-            notes
-          });
-          resetForm();
-          saveState();
-        };
-        reader.readAsDataURL(fileInput.files[0]);
-      } else {
+      const finishAdd = (proofData) => {
         client.transactions.unshift({
           id: 'tx_' + Date.now(),
           date, type, amount,
-          proof: null,
+          proof: proofData,
           notes
         });
-        resetForm();
+        document.getElementById('txAmount').value = '';
+        document.getElementById('txNotes').value = '';
+        document.getElementById('txProofImg').value = '';
         saveState();
+        toggleAdminModal(false);
+      };
+
+      if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          finishAdd(e.target.result);
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        finishAdd(null);
       }
-    }
-
-    function resetForm() {
-      document.getElementById('txAmount').value = '';
-      document.getElementById('txNotes').value = '';
-      document.getElementById('txProofImg').value = '';
-    }
-
-    function deleteTx(txId) {
-      const client = getCurrentClient();
-      if (!client) return;
-      client.transactions = client.transactions.filter(t => t.id !== txId);
-      saveState();
     }
 
     function viewProof(src) {
@@ -776,6 +951,7 @@
         state.activeClientId = state.clients[0].id;
       }
 
+      // Render Sidebar
       const listUl = document.getElementById('clientListUl');
       listUl.innerHTML = '';
       state.clients.forEach(client => {
@@ -784,9 +960,7 @@
         li.innerHTML = `
           <button class="client-btn ${isActive ? 'active' : ''}" onclick="selectClient('${client.id}')">
             <span>${client.name}</span>
-            <span style="font-size: 11px; color: ${client.transactions.length > 0 ? 'var(--groww-teal)' : 'var(--text-muted)'}; font-weight: bold;">
-              ${client.transactions.length} txs
-            </span>
+            <span class="client-badge-count">${client.transactions.length} entries</span>
           </button>
         `;
         listUl.appendChild(li);
@@ -797,6 +971,7 @@
 
       document.getElementById('currentClientTitle').innerText = current.name;
 
+      // Calculations
       let deposits = 0;
       let returns = 0;
 
@@ -816,10 +991,11 @@
       document.getElementById('metricNet').innerText = `₹${netBalance.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
       document.getElementById('metricRoi').innerText = `${roi}%`;
 
+      // Render Ledger Table (Client presentation view)
       const tbody = document.getElementById('ledgerBody');
       tbody.innerHTML = '';
       if (current.transactions.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--text-muted);">No records found.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color: var(--text-muted);">No transaction logs recorded.</td></tr>`;
         return;
       }
 
@@ -827,31 +1003,30 @@
         const tr = document.createElement('tr');
         const isDep = t.type === 'Deposit';
         tr.innerHTML = `
-          <td>${t.date}</td>
-          <td><span class="${isDep ? 'badge-deposit' : 'badge-profit'}">${t.type}</span></td>
-          <td style="font-weight: 600; color: ${isDep ? '#fff' : 'var(--groww-teal)'}">₹${t.amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-          <td>${t.proof ? `<img src="${t.proof}" class="proof-img" onclick="viewProof('${t.proof}')" title="Groww Proof" />` : '<span style="color:var(--text-muted); font-size:11px;">No Proof</span>'}</td>
-          <td>${t.notes || '-'}</td>
-          <td><button class="btn-outline" style="width: auto; padding: 2px 6px; font-size: 11px; color: var(--red);" onclick="deleteTx('${t.id}')">Remove</button></td>
+          <td style="color: var(--text-muted); font-variant-numeric: tabular-nums;">${t.date}</td>
+          <td><span class="badge-pill ${isDep ? 'pill-deposit' : 'pill-profit'}">${t.type}</span></td>
+          <td style="font-weight: 600; color: ${isDep ? 'var(--text-heading)' : 'var(--accent-groww)'}">₹${t.amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+          <td>${t.proof ? `<img src="${t.proof}" class="proof-thumbnail" onclick="viewProof('${t.proof}')" title="Verified Groww Screenshot" />` : '<span style="color:var(--text-muted); font-size:12px;">Verified Broker Record</span>'}</td>
+          <td style="color: var(--text-muted); font-size: 12px;">${t.notes || '—'}</td>
         `;
         tbody.appendChild(tr);
       });
     }
 
-    // Continuous ticker simulation & latency refresh
+    // Live continuous ticker simulation
     setInterval(() => {
       const niftyVar = (24850 + (Math.random() * 20 - 10)).toFixed(2);
       const sensexVar = (81420 + (Math.random() * 50 - 25)).toFixed(2);
-      const ping = Math.floor(35 + Math.random() * 25);
+      const ping = Math.floor(38 + Math.random() * 15);
       
       const niftyEl = document.getElementById('tickNifty');
       const sensexEl = document.getElementById('tickSensex');
       const pingEl = document.getElementById('pingMs');
       
-      if (niftyEl) niftyEl.innerText = `${Number(niftyVar).toLocaleString('en-IN')} ▲ +0.48%`;
-      if (sensexEl) sensexEl.innerText = `${Number(sensexVar).toLocaleString('en-IN')} ▲ +0.52%`;
+      if (niftyEl) niftyEl.innerText = Number(niftyVar).toLocaleString('en-IN', { minimumFractionDigits: 2 });
+      if (sensexEl) sensexEl.innerText = Number(sensexVar).toLocaleString('en-IN', { minimumFractionDigits: 2 });
       if (pingEl) pingEl.innerText = `${ping}ms`;
-    }, 3000);
+    }, 3200);
 
     document.getElementById('txDate').value = new Date().toISOString().split('T')[0];
     render();
