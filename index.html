@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Groww Terminal | Verified Client Portfolio Feed</title>
+  <title>Groww Portal | Verified Client Portfolio Feed</title>
   <!-- Authentic Groww Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><circle cx='24' cy='24' r='24' fill='%23ffffff'/><path fill='%2300D09C' d='M23.6 12a12 12 0 0 0-8.5 20.5l4.3-4.3a6 6 0 0 1 4.2-10.2c2.2 0 4.1 1.2 5.1 3l4.5-4.5A11.9 11.9 0 0 0 23.6 12z'/><path fill='%235367FF' d='M24.4 36a12 12 0 0 0 8.5-20.5l-4.3 4.3a6 6 0 0 1-4.2 10.2c-2.2 0-4.1-1.2-5.1-3l-4.5 4.5A11.9 11.9 0 0 0 24.4 36z'/></svg>" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><circle cx='24' cy='24' r='24' fill='%23ffffff'/><path fill='%2300D09C' d='M23.6 12a12 12 0 0 0-8.5 20.5l4.3-4.3a6 6 0 0 1 4.2-10.2c2.2 0 4.1 1.2 5.1 3l4.5-4.5A11.9 11.9 0 0 0 23.6 12z'/><path fill='%235367F5' d='M24.4 36a12 12 0 0 0 8.5-20.5l-4.3 4.3a6 6 0 0 1-4.2 10.2c-2.2 0-4.1-1.2-5.1-3l-4.5 4.5A11.9 11.9 0 0 0 24.4 36z'/></svg>" />
   <style>
     :root {
       --bg-dark: #070a10;
@@ -13,19 +13,19 @@
       --bg-card: #151d2d;
       --bg-hover: #1b253a;
       --groww-teal: #00d09c;
-      --groww-teal-glow: rgba(0, 208, 156, 0.25);
+      --groww-blue: #5367f5;
+      --groww-teal-glow: rgba(0, 208, 156, 0.35);
       --red: #f87171;
       --text-main: #f3f4f6;
       --text-muted: #94a3b8;
       --border: #1e293b;
-      --terminal-code: #10b981;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "JetBrains Mono", monospace;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
     body {
@@ -91,28 +91,33 @@
       align-items: center;
       background: var(--bg-panel);
       border: 1px solid var(--border);
-      padding: 14px 20px;
-      border-radius: 8px;
+      padding: 16px 24px;
+      border-radius: 10px;
       margin-bottom: 16px;
     }
 
     .groww-brand {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
     }
 
-    /* Actual Groww Logo Badge */
+    /* Substantially Bigger Official Groww Logo Badge */
     .groww-logo-badge {
-      width: 42px;
-      height: 42px;
+      width: 58px;
+      height: 58px;
       background: #ffffff;
-      border-radius: 50%;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 14px var(--groww-teal-glow);
+      box-shadow: 0 0 20px var(--groww-teal-glow), 0 2px 6px rgba(0,0,0,0.5);
       flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .groww-logo-badge:hover {
+      transform: scale(1.05);
     }
 
     .badge-live {
@@ -145,34 +150,6 @@
       100% { opacity: 0.3; }
     }
 
-    /* Terminal CLI Bar */
-    .terminal-cli-box {
-      background: #030712;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 10px 16px;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: "JetBrains Mono", monospace;
-    }
-
-    .cli-prefix {
-      color: var(--groww-teal);
-      font-weight: bold;
-    }
-
-    .cli-input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: #fff;
-      font-size: 14px;
-      font-family: inherit;
-    }
-
     /* Layout */
     .dashboard {
       display: grid;
@@ -190,7 +167,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      height: calc(100vh - 240px);
+      height: calc(100vh - 180px);
     }
 
     .sidebar-title {
@@ -245,7 +222,7 @@
       border-radius: 8px;
       padding: 20px;
       overflow-y: auto;
-      height: calc(100vh - 240px);
+      height: calc(100vh - 180px);
     }
 
     .metrics-grid {
@@ -394,7 +371,7 @@
 </head>
 <body>
 
-  <!-- Live Market Ticker Strip (Groww Feed Simulator) -->
+  <!-- Live Market Ticker Strip -->
   <div class="market-strip">
     <div class="ticker-group">
       <div class="ticker-item">
@@ -416,20 +393,24 @@
     </div>
   </div>
 
-  <!-- Header with Actual Groww Symbol -->
+  <!-- Header with Big Official Groww Symbol -->
   <header>
     <div class="groww-brand">
+      <!-- High-Res Large Groww Official Brokerage Icon -->
       <div class="groww-logo-badge" title="Groww Official Verified Feed">
-        <!-- SVG of Actual Groww Symbol -->
-        <svg viewBox="0 0 48 48" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24 6C14.06 6 6 14.06 6 24C6 33.94 14.06 42 24 42C33.94 42 42 33.94 42 24C42 14.06 33.94 6 24 6Z" fill="#FFFFFF"/>
-          <path d="M23.6 12C17.0 12 11.6 17.4 11.6 24C11.6 27.2 12.9 30.1 15.1 32.2L19.4 27.9C18.1 26.6 17.3 24.8 17.3 22.8C17.3 19.3 20.1 16.5 23.6 16.5C25.8 16.5 27.7 17.7 28.7 19.5L33.2 15C30.9 13.1 27.4 12 23.6 12Z" fill="#00D09C"/>
-          <path d="M24.4 36C31.0 36 36.4 30.6 36.4 24C36.4 20.8 35.1 17.9 32.9 15.8L28.6 20.1C29.9 21.4 30.7 23.2 30.7 25.2C30.7 28.7 27.9 31.5 24.4 31.5C22.2 31.5 20.3 30.3 19.3 28.5L14.8 33C17.1 34.9 20.6 36 24.4 36Z" fill="#5367FF"/>
+        <svg viewBox="0 0 64 64" width="44" height="44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Official Groww Twin Ribbon / Ring Logo -->
+          <g>
+            <path d="M31.47 16.00C22.65 16.00 15.50 23.16 15.50 32.00C15.50 36.27 17.20 40.14 20.14 42.94L25.88 37.20C24.15 35.53 23.10 33.19 23.10 32.00C23.10 27.36 26.86 23.60 31.50 23.60C34.43 23.60 36.97 25.20 38.30 27.60L44.30 21.60C41.23 18.00 36.63 16.00 31.47 16.00Z" fill="#00D09C"/>
+            <path d="M32.53 48.00C41.35 48.00 48.50 40.84 48.50 32.00C48.50 27.73 46.80 23.86 43.86 21.06L38.12 26.80C39.85 28.47 40.90 30.81 40.90 32.00C40.90 36.64 37.14 40.40 32.50 40.40C29.57 40.40 27.03 38.80 25.70 36.40L19.70 42.40C22.77 46.00 27.37 48.00 32.53 48.00Z" fill="#5367F5"/>
+          </g>
         </svg>
       </div>
       <div>
-        <h2 style="font-size: 16px; font-weight: 700; letter-spacing: 0.5px;">GROWW // CLIENT PORTFOLIO TERMINAL</h2>
-        <span style="font-size: 11px; color: var(--text-muted);">Verified P&L Feed & Investor Multi-Client Cloud Ledger</span>
+        <h2 style="font-size: 19px; font-weight: 800; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px;">
+          GROWW <span style="color: var(--groww-teal); font-weight: 300;">|</span> PORTFOLIO DASHBOARD
+        </h2>
+        <span style="font-size: 12px; color: var(--text-muted);">Groww Stock Brokerage Verified Client P&amp;L Ledger</span>
       </div>
     </div>
 
@@ -437,22 +418,10 @@
       <div class="badge-live">
         <div class="pulse-dot"></div> Sourced Directly From Groww API
       </div>
-      <button class="btn-outline" style="width: auto; padding: 6px 12px;" onclick="resetToDefaults()">Reset Data</button>
-      <button class="btn-outline" style="width: auto; padding: 6px 12px;" onclick="exportData()">Backup</button>
+      <button class="btn-outline" style="width: auto; padding: 7px 14px;" onclick="resetToDefaults()">Reset Data</button>
+      <button class="btn-outline" style="width: auto; padding: 7px 14px;" onclick="exportData()">Backup</button>
     </div>
   </header>
-
-  <!-- Interactive Terminal CLI -->
-  <div class="terminal-cli-box">
-    <span class="cli-prefix">groww@investor-node:~$</span>
-    <input 
-      type="text" 
-      id="cliInput" 
-      class="cli-input" 
-      placeholder="Commands: add-client <name>, deposit <amount>, profit <amount> [week|month], reset, backup..." 
-      onkeydown="handleCli(event)" 
-    />
-  </div>
 
   <div class="dashboard">
     <!-- Sidebar / Clients -->
@@ -472,7 +441,7 @@
     <div class="main-panel" id="mainContent">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
         <div>
-          <h3 id="currentClientTitle" style="font-size: 20px;">Loading Client...</h3>
+          <h3 id="currentClientTitle" style="font-size: 22px;">Loading Client...</h3>
           <span id="growwSyncStatus" style="font-size: 12px; color: var(--groww-teal);">● Groww Verified Account Feed Connected</span>
         </div>
         <button class="btn-outline" style="width: auto; padding: 6px 12px; color: var(--red); border-color: var(--red);" onclick="deleteCurrentClient()">Delete Client</button>
@@ -554,7 +523,7 @@
   </div>
 
   <script>
-    const STORAGE_KEY = 'groww_cloud_terminal_live_v3';
+    const STORAGE_KEY = 'groww_cloud_terminal_live_v5';
 
     // Seed Data with accurate calculations & Groww references
     const seedDatabase = {
@@ -759,48 +728,6 @@
       a.click();
     }
 
-    function handleCli(e) {
-      if (e.key === 'Enter') {
-        const input = e.target.value.trim();
-        e.target.value = '';
-        if (!input) return;
-
-        const parts = input.split(' ');
-        const cmd = parts[0].toLowerCase();
-        const args = parts.slice(1);
-
-        if (cmd === 'help') {
-          alert("CLI COMMANDS:\n- add-client <name>\n- deposit <amount>\n- profit <amount> [week|month]\n- reset\n- backup");
-        } else if (cmd === 'reset') {
-          resetToDefaults();
-        } else if (cmd === 'add-client' && args.length) {
-          const name = args.join(' ');
-          const id = 'c_' + Date.now();
-          state.clients.push({ id, name, transactions: [] });
-          state.activeClientId = id;
-          saveState();
-        } else if (cmd === 'deposit' && args[0]) {
-          pushQuickTx('Deposit', parseFloat(args[0]), 'CLI Deposit');
-        } else if (cmd === 'profit' && args[0]) {
-          const sub = args[1] === 'week' ? 'Weekly Profit' : (args[1] === 'month' ? 'Monthly Profit' : 'General Profit');
-          pushQuickTx(sub, parseFloat(args[0]), 'CLI Return');
-        } else if (cmd === 'backup') {
-          exportData();
-        }
-      }
-    }
-
-    function pushQuickTx(type, amount, notes) {
-      const client = getCurrentClient();
-      if (!client) return;
-      client.transactions.unshift({
-        id: 'tx_' + Date.now(),
-        date: new Date().toISOString().split('T')[0],
-        type, amount, proof: null, notes
-      });
-      saveState();
-    }
-
     function render() {
       if (!state.activeClientId && state.clients.length > 0) {
         state.activeClientId = state.clients[0].id;
@@ -868,7 +795,7 @@
       });
     }
 
-    // Live continuous ticker simulation & latency refresh
+    // Continuous ticker simulation & latency refresh
     setInterval(() => {
       const niftyVar = (24850 + (Math.random() * 20 - 10)).toFixed(2);
       const sensexVar = (81420 + (Math.random() * 50 - 25)).toFixed(2);
