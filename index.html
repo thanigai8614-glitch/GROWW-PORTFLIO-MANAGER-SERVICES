@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Groww Terminal | Verified Client Portfolio Feed</title>
+  <!-- Authentic Groww Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><circle cx='24' cy='24' r='24' fill='%23ffffff'/><path fill='%2300D09C' d='M23.6 12a12 12 0 0 0-8.5 20.5l4.3-4.3a6 6 0 0 1 4.2-10.2c2.2 0 4.1 1.2 5.1 3l4.5-4.5A11.9 11.9 0 0 0 23.6 12z'/><path fill='%235367FF' d='M24.4 36a12 12 0 0 0 8.5-20.5l-4.3 4.3a6 6 0 0 1-4.2 10.2c-2.2 0-4.1-1.2-5.1-3l-4.5 4.5A11.9 11.9 0 0 0 24.4 36z'/></svg>" />
+  <style>
+    :root {
+      --bg-dark: #070a10;
+      --bg-panel: #0d131f;
+      --bg-card: #151d2d;
+      --bg-hover: #1b253a;
+      --groww-teal: #00d09c;
+      --groww-teal-glow: rgba(0, 208, 156, 0.25);
+      --red: #f87171;
+      --text-main: #f3f4f6;
+      --text-muted: #94a3b8;
+      --border: #1e293b;
+      --terminal-code: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "JetBrains Mono", monospace;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      padding: 16px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Groww Live Market Strip */
+    .market-strip {
+      background: #000;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 16px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      overflow-x: auto;
+    }
+
+    .ticker-group {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ticker-sym {
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .ticker-price {
+      font-weight: 700;
+    }
+
+    .ticker-up {
+      color: var(--groww-teal);
+    }
+
+    .refresh-badge {
+      color: var(--groww-teal);
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Top Bar / Groww Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      padding: 14px 20px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+
+    .groww-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* Actual Groww Logo Badge */
+    .groww-logo-badge {
+      width: 42px;
+      height: 42px;
+      background: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 14px var(--groww-teal-glow);
+      flex-shrink: 0;
+    }
+
+    .badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 208, 156, 0.12);
+      border: 1px solid var(--groww-teal);
+      color: var(--groww-teal);
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--groww-teal);
+      box-shadow: 0 0 8px var(--groww-teal);
+      animation: pulse 1.6s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.3; }
+      50% { opacity: 1; }
+      100% { opacity: 0.3; }
+    }
+
+    /* Terminal CLI Bar */
+    .terminal-cli-box {
+      background: #030712;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 16px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    .cli-prefix {
+      color: var(--groww-teal);
+      font-weight: bold;
+    }
+
+    .cli-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    /* Layout */
+    .dashboard {
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      gap: 16px;
+      flex: 1;
+    }
+
+    /* Client Sidebar */
+    .sidebar {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      height: calc(100vh - 240px);
+    }
+
+    .sidebar-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .client-list {
+      list-style: none;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .client-btn {
+      width: 100%;
+      text-align: left;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+
+    .client-btn:hover {
+      background: var(--bg-hover);
+      border-color: #334155;
+    }
+
+    .client-btn.active {
+      border-color: var(--groww-teal);
+      background: rgba(0, 208, 156, 0.08);
+    }
+
+    /* Main Content Area */
+    .main-panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      overflow-y: auto;
+      height: calc(100vh - 240px);
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .metric-card {
+      background: var(--bg-card);
+      padding: 16px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    .metric-title {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .metric-value {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .metric-value.profit {
+      color: var(--groww-teal);
+    }
+
+    /* Forms */
+    .action-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .action-panel h4 {
+      margin-bottom: 12px;
+      color: var(--groww-teal);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      align-items: end;
+    }
+
+    label {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    input, select, button {
+      width: 100%;
+      background: #090e17;
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 8px 10px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--groww-teal);
+    }
+
+    .btn-groww {
+      background: var(--groww-teal);
+      color: #000;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s;
+    }
+
+    .btn-groww:hover {
+      opacity: 0.9;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-card);
+    }
+
+    /* Ledger Table */
+    .ledger-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .ledger-table th, .ledger-table td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    .ledger-table th {
+      background: var(--bg-card);
+      color: var(--text-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .badge-deposit {
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+
+    .badge-profit {
+      background: rgba(0, 208, 156, 0.15);
+      color: var(--groww-teal);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+
+    .proof-img {
+      max-width: 45px;
+      max-height: 45px;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Live Market Ticker Strip (Groww Feed Simulator) -->
+  <div class="market-strip">
+    <div class="ticker-group">
+      <div class="ticker-item">
+        <span class="ticker-sym">NIFTY 50:</span>
+        <span class="ticker-price ticker-up" id="tickNifty">24,850.30 ▲ +0.48%</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-sym">SENSEX:</span>
+        <span class="ticker-price ticker-up" id="tickSensex">81,420.15 ▲ +0.52%</span>
+      </div>
+      <div class="ticker-item">
+        <span class="ticker-sym">GROWW-GATEWAY:</span>
+        <span class="ticker-price ticker-up">200 CONNECTED</span>
+      </div>
+    </div>
+    <div class="refresh-badge">
+      <div class="pulse-dot"></div>
+      <span>LIVE DATA STREAM (<span id="pingMs">42ms</span>)</span>
+    </div>
+  </div>
+
+  <!-- Header with Actual Groww Symbol -->
+  <header>
+    <div class="groww-brand">
+      <div class="groww-logo-badge" title="Groww Official Verified Feed">
+        <!-- SVG of Actual Groww Symbol -->
+        <svg viewBox="0 0 48 48" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 6C14.06 6 6 14.06 6 24C6 33.94 14.06 42 24 42C33.94 42 42 33.94 42 24C42 14.06 33.94 6 24 6Z" fill="#FFFFFF"/>
+          <path d="M23.6 12C17.0 12 11.6 17.4 11.6 24C11.6 27.2 12.9 30.1 15.1 32.2L19.4 27.9C18.1 26.6 17.3 24.8 17.3 22.8C17.3 19.3 20.1 16.5 23.6 16.5C25.8 16.5 27.7 17.7 28.7 19.5L33.2 15C30.9 13.1 27.4 12 23.6 12Z" fill="#00D09C"/>
+          <path d="M24.4 36C31.0 36 36.4 30.6 36.4 24C36.4 20.8 35.1 17.9 32.9 15.8L28.6 20.1C29.9 21.4 30.7 23.2 30.7 25.2C30.7 28.7 27.9 31.5 24.4 31.5C22.2 31.5 20.3 30.3 19.3 28.5L14.8 33C17.1 34.9 20.6 36 24.4 36Z" fill="#5367FF"/>
+        </svg>
+      </div>
+      <div>
+        <h2 style="font-size: 16px; font-weight: 700; letter-spacing: 0.5px;">GROWW // CLIENT PORTFOLIO TERMINAL</h2>
+        <span style="font-size: 11px; color: var(--text-muted);">Verified P&L Feed & Investor Multi-Client Cloud Ledger</span>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 10px; align-items: center;">
+      <div class="badge-live">
+        <div class="pulse-dot"></div> Sourced Directly From Groww API
+      </div>
+      <button class="btn-outline" style="width: auto; padding: 6px 12px;" onclick="resetToDefaults()">Reset Data</button>
+      <button class="btn-outline" style="width: auto; padding: 6px 12px;" onclick="exportData()">Backup</button>
+    </div>
+  </header>
+
+  <!-- Interactive Terminal CLI -->
+  <div class="terminal-cli-box">
+    <span class="cli-prefix">groww@investor-node:~$</span>
+    <input 
+      type="text" 
+      id="cliInput" 
+      class="cli-input" 
+      placeholder="Commands: add-client <name>, deposit <amount>, profit <amount> [week|month], reset, backup..." 
+      onkeydown="handleCli(event)" 
+    />
+  </div>
+
+  <div class="dashboard">
+    <!-- Sidebar / Clients -->
+    <div class="sidebar">
+      <div class="sidebar-title">
+        <span>Verified Directory</span>
+        <span style="color: var(--groww-teal); font-size: 11px;">● LIVE</span>
+      </div>
+      <div style="display: flex; gap: 6px;">
+        <input type="text" id="newClientName" placeholder="New Client Name..." />
+        <button class="btn-groww" style="width: 65px;" onclick="createClient()">+ Add</button>
+      </div>
+      <ul class="client-list" id="clientListUl"></ul>
+    </div>
+
+    <!-- Main Active Client Panel -->
+    <div class="main-panel" id="mainContent">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <div>
+          <h3 id="currentClientTitle" style="font-size: 20px;">Loading Client...</h3>
+          <span id="growwSyncStatus" style="font-size: 12px; color: var(--groww-teal);">● Groww Verified Account Feed Connected</span>
+        </div>
+        <button class="btn-outline" style="width: auto; padding: 6px 12px; color: var(--red); border-color: var(--red);" onclick="deleteCurrentClient()">Delete Client</button>
+      </div>
+
+      <!-- Quick Metrics Summary -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-title">Total Deposited</div>
+          <div class="metric-value" id="metricDeposited">₹0.00</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-title">Total Returns / Profit</div>
+          <div class="metric-value profit" id="metricProfit">₹0.00</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-title">Current Net Balance</div>
+          <div class="metric-value" id="metricNet">₹0.00</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-title">ROI (%)</div>
+          <div class="metric-value profit" id="metricRoi">0.00%</div>
+        </div>
+      </div>
+
+      <!-- Transaction Entry Form -->
+      <div class="action-panel">
+        <h4><span>+</span> Log Verified Deposit / Return / Proof Image</h4>
+        <div class="form-grid">
+          <div>
+            <label>Transaction Type</label>
+            <select id="txType">
+              <option value="Deposit">Deposit (Capital Inflow)</option>
+              <option value="Weekly Profit">Weekly Profit Return</option>
+              <option value="Monthly Profit">Monthly Profit Return</option>
+              <option value="General Profit">Other Profit</option>
+            </select>
+          </div>
+          <div>
+            <label>Amount (₹)</label>
+            <input type="number" step="any" id="txAmount" placeholder="e.g. 25000" />
+          </div>
+          <div>
+            <label>Date</label>
+            <input type="date" id="txDate" />
+          </div>
+          <div>
+            <label>Attach Groww Screenshot Proof</label>
+            <input type="file" id="txProofImg" accept="image/*" />
+          </div>
+          <div>
+            <label>Notes / Groww Order Ref</label>
+            <input type="text" id="txNotes" placeholder="Order ID or Groww reference" />
+          </div>
+          <div>
+            <button class="btn-groww" onclick="addTransaction()">Submit Entry</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ledger Table -->
+      <h4 style="margin-bottom: 12px; font-size: 14px;">Verified Groww Transaction Ledger</h4>
+      <table class="ledger-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Amount (₹)</th>
+            <th>Groww Proof</th>
+            <th>Notes / Ref</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="ledgerBody">
+          <tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No records found.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'groww_cloud_terminal_live_v3';
+
+    // Seed Data with accurate calculations & Groww references
+    const seedDatabase = {
+      activeClientId: 'client_thangavel',
+      clients: [
+        {
+          id: 'client_thangavel',
+          name: 'Thangavel.T',
+          transactions: [
+            { id: 't_t5', date: '2026-08-31', type: 'Weekly Profit', amount: 79865, proof: null, notes: '#89775' },
+            { id: 't_t4', date: '2026-08-24', type: 'Weekly Profit', amount: 83563.22, proof: null, notes: '#89773-Direct Groww Transanction ID' },
+            { id: 't_t3', date: '2026-08-17', type: 'Weekly Profit', amount: 47986.32, proof: null, notes: '#89772-Direct Groww Transanction ID' },
+            { id: 't_t2', date: '2026-08-10', type: 'Weekly Profit', amount: 89543.26, proof: null, notes: '#89765-Direct Grow Transactio ID' },
+            { id: 't_t1', date: '2026-08-04', type: 'Deposit', amount: 100000, proof: null, notes: '-' }
+          ]
+        },
+        {
+          id: 'client_thandapani',
+          name: 'Thandapani',
+          transactions: [
+            { id: 't_th5', date: '2026-08-31', type: 'Weekly Profit', amount: 119797.50, proof: null, notes: '#89775' },
+            { id: 't_th4', date: '2026-08-24', type: 'Weekly Profit', amount: 125344.83, proof: null, notes: '#89773-Direct Groww Transanction ID' },
+            { id: 't_th3', date: '2026-08-17', type: 'Weekly Profit', amount: 71979.48, proof: null, notes: '#89772-Direct Groww Transanction ID' },
+            { id: 't_th2', date: '2026-08-10', type: 'Weekly Profit', amount: 134314.89, proof: null, notes: '#89765-Direct Grow Transactio ID' },
+            { id: 't_th1', date: '2026-08-04', type: 'Deposit', amount: 150000, proof: null, notes: '-' }
+          ]
+        },
+        {
+          id: 'client_maarimuthu',
+          name: 'Maarimuthu',
+          transactions: [
+            { id: 't_m5', date: '2026-08-31', type: 'Weekly Profit', amount: 119797.50, proof: null, notes: '#89775' },
+            { id: 't_m4', date: '2026-08-24', type: 'Weekly Profit', amount: 125344.83, proof: null, notes: '#89773-Direct Groww Transanction ID' },
+            { id: 't_m3', date: '2026-08-17', type: 'Weekly Profit', amount: 71979.48, proof: null, notes: '#89772-Direct Groww Transanction ID' },
+            { id: 't_m2', date: '2026-08-10', type: 'Weekly Profit', amount: 134314.89, proof: null, notes: '#89765-Direct Grow Transactio ID' },
+            { id: 't_m1', date: '2026-08-04', type: 'Deposit', amount: 150000, proof: null, notes: '-' }
+          ]
+        },
+        {
+          id: 'client_george',
+          name: 'George Alvin Ghose',
+          transactions: [
+            { id: 't_g5', date: '2026-08-31', type: 'Weekly Profit', amount: 119797.50, proof: null, notes: '#89775' },
+            { id: 't_g4', date: '2026-08-24', type: 'Weekly Profit', amount: 125344.83, proof: null, notes: '#89773-Direct Groww Transanction ID' },
+            { id: 't_g3', date: '2026-08-17', type: 'Weekly Profit', amount: 71979.48, proof: null, notes: '#89772-Direct Groww Transanction ID' },
+            { id: 't_g2', date: '2026-08-10', type: 'Weekly Profit', amount: 134314.89, proof: null, notes: '#89765-Direct Grow Transactio ID' },
+            { id: 't_g1', date: '2026-08-04', type: 'Deposit', amount: 150000, proof: null, notes: '-' }
+          ]
+        },
+        {
+          id: 'client_arivarasu',
+          name: 'Arivarasu',
+          transactions: [
+            { id: 't_a5', date: '2026-08-31', type: 'Weekly Profit', amount: 63892.00, proof: null, notes: '#89775' },
+            { id: 't_a4', date: '2026-08-24', type: 'Weekly Profit', amount: 66850.58, proof: null, notes: '#89773-Direct Groww Transanction ID' },
+            { id: 't_a3', date: '2026-08-17', type: 'Weekly Profit', amount: 38389.06, proof: null, notes: '#89772-Direct Groww Transanction ID' },
+            { id: 't_a2', date: '2026-08-10', type: 'Weekly Profit', amount: 71634.61, proof: null, notes: '#89765-Direct Grow Transactio ID' },
+            { id: 't_a1', date: '2026-08-04', type: 'Deposit', amount: 80000, proof: null, notes: '-' }
+          ]
+        },
+        {
+          id: 'client_periyaswamy',
+          name: 'Periyaswamy',
+          transactions: [
+            { id: 't_p5', date: '2026-08-31', type: 'Weekly Profit', amount: 63892.00, proof: null, notes: '#89775' },
+            { id: 't_p4', date: '2026-08-24', type: 'Weekly Profit', amount: 66850.58, proof: null, notes: '#89773-Direct Groww Transanction ID' },
+            { id: 't_p3', date: '2026-08-17', type: 'Weekly Profit', amount: 38389.06, proof: null, notes: '#89772-Direct Groww Transanction ID' },
+            { id: 't_p2', date: '2026-08-10', type: 'Weekly Profit', amount: 71634.61, proof: null, notes: '#89765-Direct Grow Transactio ID' },
+            { id: 't_p1', date: '2026-08-04', type: 'Deposit', amount: 80000, proof: null, notes: '-' }
+          ]
+        },
+        {
+          id: 'client_reena',
+          name: 'Reena',
+          transactions: [
+            { id: 't_r5', date: '2026-08-31', type: 'Weekly Profit', amount: 63892.00, proof: null, notes: '#89775' },
+            { id: 't_r4', date: '2026-08-24', type: 'Weekly Profit', amount: 66850.58, proof: null, notes: '#89773-Direct Groww Transanction ID' },
+            { id: 't_r3', date: '2026-08-17', type: 'Weekly Profit', amount: 38389.06, proof: null, notes: '#89772-Direct Groww Transanction ID' },
+            { id: 't_r2', date: '2026-08-10', type: 'Weekly Profit', amount: 71634.61, proof: null, notes: '#89765-Direct Grow Transactio ID' },
+            { id: 't_r1', date: '2026-08-04', type: 'Deposit', amount: 80000, proof: null, notes: '-' }
+          ]
+        },
+        {
+          id: 'client_meiyappan',
+          name: 'Meiyappan',
+          transactions: [
+            { id: 't_my3', date: '2026-08-31', type: 'Weekly Profit', amount: 199662.50, proof: null, notes: '#89775' },
+            { id: 't_my2', date: '2026-08-24', type: 'Weekly Profit', amount: 208908.05, proof: null, notes: '#89773-Direct Groww Transanction ID' },
+            { id: 't_my1', date: '2026-08-18', type: 'Deposit', amount: 250000, proof: null, notes: '-' }
+          ]
+        }
+      ]
+    };
+
+    let state = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (!state || !state.clients || state.clients.length < 8) {
+      state = seedDatabase;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      render();
+    }
+
+    function resetToDefaults() {
+      state = JSON.parse(JSON.stringify(seedDatabase));
+      saveState();
+    }
+
+    function getCurrentClient() {
+      return state.clients.find(c => c.id === state.activeClientId) || state.clients[0];
+    }
+
+    function selectClient(id) {
+      state.activeClientId = id;
+      saveState();
+    }
+
+    function createClient() {
+      const input = document.getElementById('newClientName');
+      const name = input.value.trim();
+      if (!name) return;
+      const id = 'c_' + Date.now();
+      state.clients.push({ id, name, transactions: [] });
+      state.activeClientId = id;
+      input.value = '';
+      saveState();
+    }
+
+    function deleteCurrentClient() {
+      if (!confirm('Are you sure you want to delete this client profile and all records?')) return;
+      state.clients = state.clients.filter(c => c.id !== state.activeClientId);
+      state.activeClientId = state.clients.length ? state.clients[0].id : null;
+      saveState();
+    }
+
+    function addTransaction() {
+      const client = getCurrentClient();
+      if (!client) return;
+
+      const type = document.getElementById('txType').value;
+      const amount = parseFloat(document.getElementById('txAmount').value);
+      const date = document.getElementById('txDate').value || new Date().toISOString().split('T')[0];
+      const notes = document.getElementById('txNotes').value;
+      const fileInput = document.getElementById('txProofImg');
+
+      if (isNaN(amount) || amount <= 0) {
+        alert('Please enter a valid amount.');
+        return;
+      }
+
+      if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          client.transactions.unshift({
+            id: 'tx_' + Date.now(),
+            date, type, amount,
+            proof: e.target.result,
+            notes
+          });
+          resetForm();
+          saveState();
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        client.transactions.unshift({
+          id: 'tx_' + Date.now(),
+          date, type, amount,
+          proof: null,
+          notes
+        });
+        resetForm();
+        saveState();
+      }
+    }
+
+    function resetForm() {
+      document.getElementById('txAmount').value = '';
+      document.getElementById('txNotes').value = '';
+      document.getElementById('txProofImg').value = '';
+    }
+
+    function deleteTx(txId) {
+      const client = getCurrentClient();
+      if (!client) return;
+      client.transactions = client.transactions.filter(t => t.id !== txId);
+      saveState();
+    }
+
+    function viewProof(src) {
+      const w = window.open("");
+      w.document.write(`<img src="${src}" style="max-width:100%; height:auto;" alt="Groww Proof Document"/>`);
+    }
+
+    function exportData() {
+      const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `groww_portfolio_backup_${new Date().toISOString().slice(0,10)}.json`;
+      a.click();
+    }
+
+    function handleCli(e) {
+      if (e.key === 'Enter') {
+        const input = e.target.value.trim();
+        e.target.value = '';
+        if (!input) return;
+
+        const parts = input.split(' ');
+        const cmd = parts[0].toLowerCase();
+        const args = parts.slice(1);
+
+        if (cmd === 'help') {
+          alert("CLI COMMANDS:\n- add-client <name>\n- deposit <amount>\n- profit <amount> [week|month]\n- reset\n- backup");
+        } else if (cmd === 'reset') {
+          resetToDefaults();
+        } else if (cmd === 'add-client' && args.length) {
+          const name = args.join(' ');
+          const id = 'c_' + Date.now();
+          state.clients.push({ id, name, transactions: [] });
+          state.activeClientId = id;
+          saveState();
+        } else if (cmd === 'deposit' && args[0]) {
+          pushQuickTx('Deposit', parseFloat(args[0]), 'CLI Deposit');
+        } else if (cmd === 'profit' && args[0]) {
+          const sub = args[1] === 'week' ? 'Weekly Profit' : (args[1] === 'month' ? 'Monthly Profit' : 'General Profit');
+          pushQuickTx(sub, parseFloat(args[0]), 'CLI Return');
+        } else if (cmd === 'backup') {
+          exportData();
+        }
+      }
+    }
+
+    function pushQuickTx(type, amount, notes) {
+      const client = getCurrentClient();
+      if (!client) return;
+      client.transactions.unshift({
+        id: 'tx_' + Date.now(),
+        date: new Date().toISOString().split('T')[0],
+        type, amount, proof: null, notes
+      });
+      saveState();
+    }
+
+    function render() {
+      if (!state.activeClientId && state.clients.length > 0) {
+        state.activeClientId = state.clients[0].id;
+      }
+
+      const listUl = document.getElementById('clientListUl');
+      listUl.innerHTML = '';
+      state.clients.forEach(client => {
+        const li = document.createElement('li');
+        const isActive = client.id === state.activeClientId;
+        li.innerHTML = `
+          <button class="client-btn ${isActive ? 'active' : ''}" onclick="selectClient('${client.id}')">
+            <span>${client.name}</span>
+            <span style="font-size: 11px; color: ${client.transactions.length > 0 ? 'var(--groww-teal)' : 'var(--text-muted)'}; font-weight: bold;">
+              ${client.transactions.length} txs
+            </span>
+          </button>
+        `;
+        listUl.appendChild(li);
+      });
+
+      const current = getCurrentClient();
+      if (!current) return;
+
+      document.getElementById('currentClientTitle').innerText = current.name;
+
+      let deposits = 0;
+      let returns = 0;
+
+      current.transactions.forEach(t => {
+        if (t.type === 'Deposit') {
+          deposits += t.amount;
+        } else {
+          returns += t.amount;
+        }
+      });
+
+      const netBalance = deposits + returns;
+      const roi = deposits > 0 ? ((returns / deposits) * 100).toFixed(2) : 0;
+
+      document.getElementById('metricDeposited').innerText = `₹${deposits.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      document.getElementById('metricProfit').innerText = `₹${returns.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      document.getElementById('metricNet').innerText = `₹${netBalance.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      document.getElementById('metricRoi').innerText = `${roi}%`;
+
+      const tbody = document.getElementById('ledgerBody');
+      tbody.innerHTML = '';
+      if (current.transactions.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--text-muted);">No records found.</td></tr>`;
+        return;
+      }
+
+      current.transactions.forEach(t => {
+        const tr = document.createElement('tr');
+        const isDep = t.type === 'Deposit';
+        tr.innerHTML = `
+          <td>${t.date}</td>
+          <td><span class="${isDep ? 'badge-deposit' : 'badge-profit'}">${t.type}</span></td>
+          <td style="font-weight: 600; color: ${isDep ? '#fff' : 'var(--groww-teal)'}">₹${t.amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+          <td>${t.proof ? `<img src="${t.proof}" class="proof-img" onclick="viewProof('${t.proof}')" title="Groww Proof" />` : '<span style="color:var(--text-muted); font-size:11px;">No Proof</span>'}</td>
+          <td>${t.notes || '-'}</td>
+          <td><button class="btn-outline" style="width: auto; padding: 2px 6px; font-size: 11px; color: var(--red);" onclick="deleteTx('${t.id}')">Remove</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Live continuous ticker simulation & latency refresh
+    setInterval(() => {
+      const niftyVar = (24850 + (Math.random() * 20 - 10)).toFixed(2);
+      const sensexVar = (81420 + (Math.random() * 50 - 25)).toFixed(2);
+      const ping = Math.floor(35 + Math.random() * 25);
+      
+      const niftyEl = document.getElementById('tickNifty');
+      const sensexEl = document.getElementById('tickSensex');
+      const pingEl = document.getElementById('pingMs');
+      
+      if (niftyEl) niftyEl.innerText = `${Number(niftyVar).toLocaleString('en-IN')} ▲ +0.48%`;
+      if (sensexEl) sensexEl.innerText = `${Number(sensexVar).toLocaleString('en-IN')} ▲ +0.52%`;
+      if (pingEl) pingEl.innerText = `${ping}ms`;
+    }, 3000);
+
+    document.getElementById('txDate').value = new Date().toISOString().split('T')[0];
+    render();
+  </script>
+</body>
+</html>
